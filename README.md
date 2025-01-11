@@ -112,6 +112,4 @@ If you use this implementation in your research, please cite the original RETRO 
 }
 ```
 
-## License
 
-This project is open-source and available under the MIT License.
