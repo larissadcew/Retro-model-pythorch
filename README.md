@@ -1,24 +1,24 @@
 # RETRO Transformer
 
-An easy-to-implement PyTorch version of [RETRO (Retrieval-Enhanced Transformer)](https://arxiv.org/abs/2112.04426).
+Uma versão fácil de implementar em PyTorch do [RETRO (Retrieval-Enhanced Transformer)](https://arxiv.org/abs/2112.04426).
 
-## Overview
+## Visão Geral
 
-This implementation combines the power of:
-- [labml.ai](https://nn.labml.ai/transformers/retro/index.html) for core RETRO architecture
-- [Hugging Face Accelerate](https://github.com/huggingface/accelerate) for efficient training across different hardware (CPU, GPU, TPU)
+Esta implementação combina o poder de:
+- [labml.ai](https://nn.labml.ai/transformers/retro/index.html) para a arquitetura central do RETRO
+- [Hugging Face Accelerate](https://github.com/huggingface/accelerate) para treinamento eficiente em diferentes hardwares (CPU, GPU, TPU)
 
-## Key Features
+## Principais Características
 
-- Flexible architecture supporting various model configurations
-- Efficient retrieval mechanism for enhanced text generation
-- Hardware-agnostic training capabilities
-- Built-in BERT integration for chunk embeddings
-- Streamlined database construction and dataset preparation
+- Arquitetura flexível suportando várias configurações de modelo
+- Mecanismo de recuperação eficiente para geração de texto aprimorada
+- Capacidades de treinamento independentes de hardware
+- Integração embutida com BERT para embeddings de fragmentos
+- Construção de banco de dados e preparação de conjunto de dados simplificadas
 
-## Quick Start
+## Início Rápido
 
-Here's how to get started with RETRO:
+Veja como começar com o RETRO:
 
 ```python
 from retro_transformer.bert import BERTForChunkEmbeddings
@@ -27,7 +27,7 @@ from retro_transformer.tools.dataset import build_dataset
 from retro_transformer.model import RetroModel, NearestNeighborEncoder
 from retro_transformer.tools.train import train
 
-# Configuration
+# Configuração
 config = {
     'chunk_len': 16,
     'd_model': 128,
@@ -39,17 +39,17 @@ config = {
     'text_file': 'text.txt'
 }
 
-# Initialize BERT embeddings
+# Inicializar embeddings do BERT
 bert = BERTForChunkEmbeddings('bert-base-uncased', 'cuda')
 index = RetroIndex(config['workspace'], config['chunk_len'], bert=bert)
 
-# Build database and dataset
+# Construir banco de dados e conjunto de dados
 build_database(config['workspace'], config['text_file'], 
               bert=bert, chunk_len=config['chunk_len'])
 num_tokens = build_dataset(config['workspace'], config['text_file'], 
                          chunk_len=config['chunk_len'], index=index)
 
-# Create encoder
+# Criar codificador
 encoder = NearestNeighborEncoder(
     chunk_len=config['chunk_len'],
     n_layers=config['n_layers'],
@@ -60,7 +60,7 @@ encoder = NearestNeighborEncoder(
     ca_layers={3}
 )
 
-# Initialize RETRO model
+# Inicializar modelo RETRO
 model = RetroModel(
     n_vocab=num_tokens,
     d_model=config['d_model'],
@@ -73,7 +73,7 @@ model = RetroModel(
     ca_layers={3, 5}
 )
 
-# Train the model
+# Treinar o modelo
 train(model, config['workspace'], config['text_file'], 
       chunk_len=config['chunk_len'], d_model=config['d_model'])
 ```
@@ -85,7 +85,7 @@ train(model, config['workspace'], config['text_file'],
 - **NearestNeighborEncoder**: Processes retrieved neighbor information
 - **RetroModel**: Core transformer architecture with retrieval enhancement
 
-## Model Parameters
+## Parâmetros do Modelo
 
 - `chunk_len`: Length of text chunks for retrieval
 - `d_model`: Model dimension
