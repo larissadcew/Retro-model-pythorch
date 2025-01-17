@@ -78,30 +78,30 @@ train(model, config['workspace'], config['text_file'],
       chunk_len=config['chunk_len'], d_model=config['d_model'])
 ```
 
-## Architecture Components
+## Componentes da Arquitetura
 
-- **BERTForChunkEmbeddings**: Handles text chunk encoding using BERT
-- **RetroIndex**: Manages the retrieval database
-- **NearestNeighborEncoder**: Processes retrieved neighbor information
-- **RetroModel**: Core transformer architecture with retrieval enhancement
+- **BERTForChunkEmbeddings**: Lida com a codificação de fragmentos de texto usando BERT
+- **RetroIndex**: Gerencia o banco de dados de recuperação
+- **NearestNeighborEncoder**: Processa informações de vizinhos recuperados
+- **RetroModel**: Arquitetura central do transformer com aprimoramento de recuperação
 
 ## Parâmetros do Modelo
 
-- `chunk_len`: Length of text chunks for retrieval
-- `d_model`: Model dimension
-- `d_ff`: Feed-forward network dimension
-- `n_heads`: Number of attention heads
-- `d_k`: Dimension of keys in attention mechanism
-- `n_layers`: Number of transformer layers
-- `ca_layers`: Cross-attention layer positions
+- `chunk_len`: Comprimento dos fragmentos de texto para recuperação
+- `d_model`: Dimensão do modelo
+- `d_ff`: Dimensão da rede feed-forward
+- `n_heads`: Número de cabeças de atenção
+- `d_k`: Dimensão das chaves no mecanismo de atenção
+- `n_layers`: Número de camadas do transformer
+- `ca_layers`: Posições das camadas de atenção cruzada
 
-## Contributing
+## Contribuição
 
-Feel free to open issues and pull requests to help improve this implementation!
+Sinta-se à vontade para abrir issues e pull requests para ajudar a melhorar esta implementação!
 
-## Citation
+## Citação
 
-If you use this implementation in your research, please cite the original RETRO paper:
+Se você usar esta implementação em sua pesquisa, por favor, cite o artigo original do RETRO:
 
 ```bibtex
 @article{borgeaud2021improving,
@@ -110,6 +110,3 @@ If you use this implementation in your research, please cite the original RETRO 
   journal={arXiv preprint arXiv:2112.04426},
   year={2021}
 }
-```
-
-
